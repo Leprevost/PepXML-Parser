@@ -16,5 +16,20 @@ has 'msms_pipeline_analysis' => (
         return my $obj = PepXML::MsmsPipelineAnalysis->new();
     	}
 	);
+	
+	
+sub get_msms_pipeline_analysis {
+	my $self = shift;
+	
+	my %map;
+	
+	$map{'date'} = $self->msms_pipeline_analysis->date;
+	$map{'xmlns'} = $self->msms_pipeline_analysis->xmlns;
+	$map{'xmlns_xsi'} = $self->msms_pipeline_analysis->xmlns_xsi;
+	$map{'xmlns_schemaLocation'} = $self->msms_pipeline_analysis->xmlns_schemaLocation;
+	$map{'summary_xml'} = $self->msms_pipeline_analysis->summary_xml;
+	
+	return %map;		
+}
 
-1;
+1
