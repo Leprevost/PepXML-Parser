@@ -14,6 +14,9 @@ use PepXML::RunSummary;
 use PepXML::SearchSummary;
 use PepXML::SearchDatabase;
 use PepXML::AAModification;
+use PepXML::SpectrumQuery;
+use PepXML::SearchHit;
+use PepXML::SearchScore;
 
 our $VERSION = '0.01';
 
@@ -23,6 +26,9 @@ my $package;
 my @enzyme_list;
 my @aamod_list;
 my @param_list;
+my @spec_query_list;
+my @search_hit_list;
+my @search_score_list;
 
 
 has 'pepxmlfile' => (
@@ -48,6 +54,7 @@ sub parse {
 			sample_enzyme			=>	\&parse_sample_enzyme,
 			msms_run_summary		=>	\&parse_msms_run_summary,
 			search_summary			=>	\&parse_search_summary,
+			#spectrum_query			=>	\&parse_spectrum_query,
 
 		},
 		pretty_print => 'indented',
@@ -179,9 +186,70 @@ sub parse_search_summary {
 
 }
 
+
+sub parse_spectrum_query {
+	my ( $parser, $node ) = @_;
+	
+	if ( $node->name eq 'spectrum_query' ) {
+		
+		my $sq = PepXML::SpectrumQuery->new();
+		
+		$sq->spectrum($node->{'att'}->{'spectrum'});
+		$sq->start_scan($node->{'att'}->{'start_scan'});
+		$sq->end_scan($node->{'att'}->{'end_scan'});
+		$sq->precursor_neutral_mass($node->{'att'}->{'precursor_neutral_mass'});
+		$sq->assumed_charge($node->{'att'}->{'assumed_charge'});
+		$sq->index($node->{'att'}->{'index'});
+		$sq->retention_time_sec($node->{'att'}->{'retention_time_sec'});
+		
+		my @subnodes_1 = $node->children;
+		
+		for my $sn1 ( @subnodes_1 ) {
+			
+			my @subnodes_2 = $sn1->children;
+			
+			for my $sn2 ( @subnodes_2 ) {
+					
+				my $sh = PepXML::SearchHit->new();
+				
+				$sh->hit_rank($sn2->{'att'}->{'hit_rank'});
+				$sh->peptide($sn2->{'att'}->{'peptide'});
+				$sh->peptide_prev_aa($sn2->{'att'}->{'peptide_prev_aa'});
+				$sh->peptide_next_aa($sn2->{'att'}->{'peptide_next_aa'});
+				$sh->protein($sn2->{'att'}->{'protein'});
+				$sh->num_tot_proteins($sn2->{'att'}->{'num_tot_proteins'});
+				$sh->num_matched_ions($sn2->{'att'}->{'num_matched_ions'});
+				$sh->tot_num_ions($sn2->{'att'}->{'tot_num_ions'});
+				$sh->calc_neutral_pep_mass($sn2->{'att'}->{'calc_neutral_pep_mass'});
+				$sh->massdiff($sn2->{'att'}->{'massdiff'});
+				$sh->num_tol_term($sn2->{'att'}->{'num_tol_term'});
+				$sh->num_missed_cleavages($sn2->{'att'}->{'num_missed_cleavages'});
+				$sh->num_matched_peptides($sn2->{'att'}->{'num_matched_peptides'});
+				
+				my @subnodes_3 = $sn2->children;
+				
+				for my $sn3 ( @subnodes_3 ) {
+					
+					if ( $sn3->name eq 'search_score' ) {
+						
+						my $sc = PepXML::SearchScore->new();
+						
+						$sc->name($sn3->{'att'}->{'name'});
+						$sc->value($sn3->{'att'}->{'value'});
+						
+						push(@search_score_list, $sc);
+						$sh->search_score(\@search_score_list);
+					}
+				}
+				
+				push(@search_hit_list, $sh);
+				$sq->search_hit(\@search_hit_list);
+				
+			}
+		}
+	}
+	
+	#$package->pepxmlfile->search_summary($sm);
+}
+
 1;
-
-
-
-
-
