@@ -14,3 +14,6 @@ my $pepxml = $p->parse("t/sample.pep.xml");
 
 #my ($enzymes) = $pepxml->get_sample_enzyme;
 #my @enzymes = @{$enzymes};
+
+#my $summary = $pepxml->get_run_summary();
+#p $summary;

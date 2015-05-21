@@ -8,6 +8,7 @@ use Moose;
 use namespace::autoclean;
 use PepXML::MsmsPipelineAnalysis;
 use PepXML::Enzyme;
+use PepXML::RunSummary;
 
 has 'msms_pipeline_analysis' => (
 	is	=>	'rw',
@@ -21,7 +22,16 @@ has 'msms_pipeline_analysis' => (
 has 'sample_enzyme' => (
 	is	=>	'rw',
 	isa	=>	'ArrayRef[PepXML::Enzyme]',
-	);	
+	);
+	
+has 'msms_run_summary' => (
+	is	=>	'rw',
+	isa	=>	'PepXML::RunSummary',
+	default => sub {
+    	my $self = shift;
+        return my $obj = PepXML::RunSummary->new();
+    	}
+	);
 	
 	
 sub get_msms_pipeline_analysis {
@@ -45,6 +55,13 @@ sub get_sample_enzyme {
 	my @list = $self->sample_enzyme;
 	
 	return @list;
+}
+
+
+sub get_run_summary {
+	my $self = shift;
+	
+	return $self->msms_run_summary;	
 }
 
 1

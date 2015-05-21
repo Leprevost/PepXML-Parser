@@ -10,6 +10,7 @@ use Data::Printer;
 use PepXML::PepXMLFile;
 use PepXML::MsmsPipelineAnalysis;
 use PepXML::Enzyme;
+use PepXML::RunSummary;
 
 our $VERSION = '0.01';
 
@@ -40,6 +41,7 @@ sub parse {
 		{
 			msms_pipeline_analysis	=>	\&parse_msms_pipeline_analysis,
 			sample_enzyme			=>	\&parse_sample_enzyme,
+			msms_run_summary		=>	\&parse_msms_run_summary,
 
 		},
 		pretty_print => 'indented',
@@ -86,6 +88,21 @@ sub parse_sample_enzyme {
 	}
 	
 	push(@enzyme_list, $enz);	
+}
+
+
+sub parse_msms_run_summary {
+	my ( $parser, $node ) = @_;
+	
+	my $rs = PepXML::RunSummary->new();
+	
+	$rs->base_name($node->{'att'}->{'base_name'});
+	$rs->msManufacturer($node->{'att'}->{'msManufacturer'});
+	$rs->msModel($node->{'att'}->{'msModel'});
+	$rs->raw_data_type($node->{'att'}->{'raw_data_type'});
+	$rs->raw_data($node->{'att'}->{'raw_data'});
+	
+	$package->pepxmlfile->msms_run_summary($rs);
 }
 
 1;
