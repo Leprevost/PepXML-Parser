@@ -9,8 +9,14 @@ use namespace::autoclean;
 use Data::Printer;
 use PepXML::PepXMLFile;
 use PepXML::MsmsPipelineAnalysis;
+use PepXML::Enzyme;
 
 our $VERSION = '0.01';
+
+
+#globals
+my $package;
+my @enzyme_list;
 
 
 has 'pepxmlfile' => (
@@ -22,8 +28,6 @@ has 'pepxmlfile' => (
     	}
 	);
 	
-
-my $package;
 	
 sub parse {
 	my $self = shift;
@@ -35,13 +39,17 @@ sub parse {
 		twig_handlers =>	
 		{
 			msms_pipeline_analysis	=>	\&parse_msms_pipeline_analysis,
+			sample_enzyme			=>	\&parse_sample_enzyme,
 
 		},
 		pretty_print => 'indented',
 	);
 
 	$parser->parsefile($file);
-
+	
+	#from globals to object
+	$package->pepxmlfile->sample_enzyme(\@enzyme_list);
+	
 	return $self->pepxmlfile;
 }
 
@@ -58,6 +66,26 @@ sub parse_msms_pipeline_analysis {
 	$mpa->summary_xml($node->{'att'}->{'summary_xml'});	
 	
 	$package->pepxmlfile->msms_pipeline_analysis($mpa);
+}
+
+
+sub parse_sample_enzyme {
+	my ( $parser, $node ) = @_;
+	
+	my $enz = PepXML::Enzyme->new();
+	
+	$enz->name($node->{'att'}->{'name'});
+	
+	my @subnodes = $node->children;
+	
+	for my $sn ( @subnodes ) {
+		
+		$enz->cut($sn->{'att'}->{'cut'});
+		$enz->no_cut($sn->{'att'}->{'no_cut'});
+		$enz->sense($sn->{'att'}->{'sense'});
+	}
+	
+	push(@enzyme_list, $enz);	
 }
 
 1;

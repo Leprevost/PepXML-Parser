@@ -7,6 +7,7 @@ use XML::Twig;
 use Moose;
 use namespace::autoclean;
 use PepXML::MsmsPipelineAnalysis;
+use PepXML::Enzyme;
 
 has 'msms_pipeline_analysis' => (
 	is	=>	'rw',
@@ -16,6 +17,11 @@ has 'msms_pipeline_analysis' => (
         return my $obj = PepXML::MsmsPipelineAnalysis->new();
     	}
 	);
+	
+has 'sample_enzyme' => (
+	is	=>	'rw',
+	isa	=>	'ArrayRef[PepXML::Enzyme]',
+	);	
 	
 	
 sub get_msms_pipeline_analysis {
@@ -30,6 +36,15 @@ sub get_msms_pipeline_analysis {
 	$map{'summary_xml'} = $self->msms_pipeline_analysis->summary_xml;
 	
 	return %map;		
+}
+
+
+sub get_sample_enzyme {
+	my $self = shift;
+	
+	my @list = $self->sample_enzyme;
+	
+	return @list;
 }
 
 1

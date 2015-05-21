@@ -10,6 +10,7 @@ my $p = PepXML::Parser->new();
 
 my $pepxml = $p->parse("t/sample.pep.xml");
 
-my %msms = $pepxml->get_msms_pipeline_analysis();
+#my %msms = $pepxml->get_msms_pipeline_analysis();
 
-p %msms;
+#my ($enzymes) = $pepxml->get_sample_enzyme;
+#my @enzymes = @{$enzymes};
