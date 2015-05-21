@@ -33,6 +33,15 @@ has 'msms_run_summary' => (
     	}
 	);
 	
+has 'search_summary' => (
+	is	=>	'rw',
+	isa	=>	'PepXML::SearchSummary',
+	default => sub {
+    	my $self = shift;
+        return my $obj = PepXML::SearchSummary->new();
+    	}
+	);
+	
 	
 sub get_msms_pipeline_analysis {
 	my $self = shift;
@@ -48,7 +57,6 @@ sub get_msms_pipeline_analysis {
 	return %map;		
 }
 
-
 sub get_sample_enzyme {
 	my $self = shift;
 	
@@ -57,11 +65,34 @@ sub get_sample_enzyme {
 	return @list;
 }
 
-
 sub get_run_summary {
 	my $self = shift;
 	
 	return $self->msms_run_summary;	
+}
+
+sub get_search_summary {
+	my $self = shift;
+	
+	return $self->search_summary;	
+}
+
+sub get_amminoacid_modification {
+	my $self = shift;
+	
+	my $ref = $self->search_summary->aminoacid_modification;
+	my @deref = @{$ref};
+	
+	return @deref;	
+}
+
+sub get_parameters {
+	my $self = shift;
+	
+	my $ref = $self->search_summary->parameter;
+	my @deref = @{$ref};
+	
+	return @deref;	
 }
 
 1
