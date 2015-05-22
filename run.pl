@@ -8,7 +8,7 @@ use Data::Printer;
 
 my $p = PepXML::Parser->new();
 
-my $pepxml = $p->parse("t/sample.pep.xml");
+my $pepxml = $p->parse("t/small.sample.pep.xml");
 
 #my %msms = $pepxml->get_msms_pipeline_analysis();
 
@@ -27,6 +27,11 @@ my $pepxml = $p->parse("t/sample.pep.xml");
 #my @mods = $pepxml->get_amminoacid_modification();
 #p $mods[0];
 	
-my @proteins = $pepxml->get_proteins();
-p @proteins;
+$pepxml->get_proteins();
+my @hits = $pepxml->search_hit;
+p @hits;
+#my @proteins = $pepxml->get_proteins();
+#my @peptides = $pepxml->get_unique_peptides();
+#p @peptides;
+#p @proteins;
 
