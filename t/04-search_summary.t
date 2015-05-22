@@ -14,7 +14,7 @@ my $pepxml	 = $p->parse("t/small.sample.pep.xml");
 
 my $s = $pepxml->get_search_summary();
 
-my @mods = $pepxml->get_amminoacid_modification();
+my @mods = $pepxml->get_modifications();
 
 my @params = $pepxml->get_parameters();
 
