@@ -6,7 +6,6 @@ use warnings;
 use XML::Twig;
 use Moose;
 use namespace::autoclean;
-use Data::Printer;
 use PepXML::PepXMLFile;
 use PepXML::MsmsPipelineAnalysis;
 use PepXML::Enzyme;
