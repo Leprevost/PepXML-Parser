@@ -27,4 +27,6 @@ my $pepxml = $p->parse("t/sample.pep.xml");
 #my @mods = $pepxml->get_amminoacid_modification();
 #p $mods[0];
 	
-p $pepxml->search_hit->[0];
+my @proteins = $pepxml->get_proteins();
+p @proteins;
+

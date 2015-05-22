@@ -101,4 +101,22 @@ sub get_parameters {
 	return @deref;	
 }
 
+
+sub get_proteins {
+	my $self = shift;
+	
+	use Data::Printer;
+	
+	my $size = @{$self->search_hit};
+	
+	my @proteins;
+	
+	for ( my $i = 0; $i <= ($size - 1); $i++ ) {
+		
+		push(@proteins, $self->search_hit->[$i]->protein);
+	} 
+	
+	return @proteins;
+}
+
 1
