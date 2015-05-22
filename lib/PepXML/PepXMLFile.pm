@@ -63,7 +63,7 @@ sub get_msms_pipeline_analysis {
 	return %map;		
 }
 
-sub get_sample_enzyme {
+sub get_enzymes {
 	my $self = shift;
 	
 	my @list = $self->sample_enzyme;
@@ -83,7 +83,7 @@ sub get_search_summary {
 	return $self->search_summary;	
 }
 
-sub get_amminoacid_modification {
+sub get_modifications {
 	my $self = shift;
 	
 	my $ref = $self->search_summary->aminoacid_modification;
@@ -102,10 +102,17 @@ sub get_parameters {
 }
 
 
+sub get_hits {
+	my $self = shift;
+
+	my @hits = @{$self->search_hits};
+	
+	return @hits;	
+}
+
+
 sub get_proteins {
 	my $self = shift;
-	
-	use Data::Printer;
 	
 	my $size = @{$self->search_hit};
 	
@@ -117,6 +124,57 @@ sub get_proteins {
 	} 
 	
 	return @proteins;
+}
+
+sub get_unique_proteins {
+	my $self = shift;
+	
+	my $size = @{$self->search_hit};
+	
+	my @proteins;
+	my %proteins;
+	
+	for ( my $i = 0; $i <= ($size - 1); $i++ ) {
+		
+		$proteins{$self->search_hit->[$i]->protein} = '';
+	} 
+	
+	push( @proteins, (keys %proteins) );
+	
+	return @proteins;
+}
+
+sub get_peptides {
+	my $self = shift;
+	
+	my $size = @{$self->search_hit};
+	
+	my @peptides;
+	
+	for ( my $i = 0; $i <= ($size - 1); $i++ ) {
+		
+		push(@peptides, $self->search_hit->[$i]->peptide);
+	} 
+	
+	return @peptides;
+}
+
+sub get_unique_peptides {
+	my $self = shift;
+	
+	my $size = @{$self->search_hit};
+	
+	my @peptides;
+	my %peptides;
+	
+	for ( my $i = 0; $i <= ($size - 1); $i++ ) {
+		
+		$peptides{$self->search_hit->[$i]->peptide} = '';
+	} 
+	
+	push( @peptides, (keys %peptides) );
+	
+	return @peptides;
 }
 
 1

@@ -227,10 +227,10 @@ sub parse_search_hit {
 			$subnodes[3]->{'att'}->{'name'} => $subnodes[3]->{'att'}->{'value'},
 			$subnodes[4]->{'att'}->{'name'} => $subnodes[4]->{'att'}->{'value'},
 			$subnodes[5]->{'att'}->{'name'} => $subnodes[5]->{'att'}->{'value'},
-			$subnodes[6]->{'att'}->{'name'} => $subnodes[6]->{'att'}->{'value'},
-			$subnodes[7]->{'att'}->{'name'} => $subnodes[7]->{'att'}->{'value'},
-			$subnodes[8]->{'att'}->{'name'} => $subnodes[8]->{'att'}->{'value'},
-			$subnodes[9]->{'att'}->{'name'} => $subnodes[9]->{'att'}->{'value'},
+			#$subnodes[6]->{'att'}->{'name'} => $subnodes[6]->{'att'}->{'value'},
+			#$subnodes[7]->{'att'}->{'name'} => $subnodes[7]->{'att'}->{'value'},
+			#$subnodes[8]->{'att'}->{'name'} => $subnodes[8]->{'att'}->{'value'},
+			#$subnodes[9]->{'att'}->{'name'} => $subnodes[9]->{'att'}->{'value'},
 		);
 	}
 	
