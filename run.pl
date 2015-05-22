@@ -15,8 +15,8 @@ my $pepxml = $p->parse("t/sample.pep.xml");
 #my ($enzymes) = $pepxml->get_sample_enzyme;
 #my @enzymes = @{$enzymes};
 
-my $summary = $pepxml->get_run_summary();
-p $summary;
+#my $summary = $pepxml->get_run_summary();
+#p $summary;
 
 #my $search_summary = $pepxml->get_search_summary();
 #p $search_summary;
@@ -27,3 +27,4 @@ p $summary;
 #my @mods = $pepxml->get_amminoacid_modification();
 #p $mods[0];
 	
+p $pepxml->search_hit->[0];

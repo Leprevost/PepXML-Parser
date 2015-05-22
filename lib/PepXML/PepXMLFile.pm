@@ -9,7 +9,7 @@ use namespace::autoclean;
 use PepXML::MsmsPipelineAnalysis;
 use PepXML::Enzyme;
 use PepXML::RunSummary;
-use PepXML::SpectrumQuery;
+use PepXML::SearchHit;
 
 has 'msms_pipeline_analysis' => (
 	is	=>	'rw',
@@ -43,9 +43,9 @@ has 'search_summary' => (
     	}
 	);
 	
-has 'spectrum_query' => (
+has 'search_hit' => (
 	is	=>	'rw',
-	isa	=>	'ArrayRef[PepXML::SpectrumQuery]',
+	isa	=>	'ArrayRef[PepXML::SearchHit]',
 	);
 	
 	

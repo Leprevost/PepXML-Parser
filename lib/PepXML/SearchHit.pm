@@ -7,6 +7,48 @@ use Moose;
 use namespace::autoclean;
 use PepXML::SearchScore;
 
+has 'spectrum'	=>	(
+	is		=>	'rw',
+	isa		=>	'Str',
+	default	=>	'',
+	);
+	
+has 'start_scan'	=>	(
+	is		=>	'rw',
+	isa		=>	'Int',
+	default	=>	0,
+	);
+	
+has 'end_scan'	=>	(
+	is		=>	'rw',
+	isa		=>	'Int',
+	default	=>	0,
+	);
+	
+has 'precursor_neutral_mass'	=>	(
+	is		=>	'rw',
+	isa		=>	'Num',
+	default	=>	0,
+	);
+	
+has 'assumed_charge'	=>	(
+	is		=>	'rw',
+	isa		=>	'Int',
+	default	=>	0,
+	);
+	
+has 'index'	=>	(
+	is		=>	'rw',
+	isa		=>	'Int',
+	default	=>	0,
+	);
+	
+has 'retention_time_sec'	=>	(
+	is		=>	'rw',
+	isa		=>	'Num',
+	default	=>	0,
+	);
+	
 has 'hit_rank'	=>	(
 	is		=>	'rw',
 	isa		=>	'Int',
@@ -70,7 +112,7 @@ has 'massdiff'	=>	(
 has 'num_tol_term'	=>	(
 	is		=>	'rw',
 	isa		=>	'Int',
-	default	=>	0,
+	default	=>		0,
 	);
 	
 has 'num_missed_cleavages'	=>	(
@@ -87,7 +129,7 @@ has 'num_matched_peptides'	=>	(
 	
 has 'search_score'	=>	(
 	is		=>	'rw',
-	isa		=>	'ArrayRef[PepXML::SearchScore]',
+	isa		=>	'HashRef',
 	);
 	
 1;
