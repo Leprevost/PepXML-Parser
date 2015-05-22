@@ -7,7 +7,7 @@ WriteMakefile(
     NAME             => 'PepXML::Parser',
     AUTHOR           => q{Felipe da Veiga Leprevost <leprevost@cpan.org>},
     VERSION_FROM     => 'lib/PepXML/Parser.pm',
-    ABSTRACT_FROM    => 'lib/PepXML/Parser.pm',
+    ABSTRACT_FROM    => 'README.pod',
     LICENSE          => 'perl_5',
     PL_FILES         => {},
     MIN_PERL_VERSION => 5.10,
