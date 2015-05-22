@@ -22,6 +22,17 @@ WriteMakefile(
 		"Moose"					=>	0,
 		"namespace::autoclean"	=>	0,	
     },
+    
+    (! eval { ExtUtils::MakeMaker->VERSION(6.46) } ? () :
+        (META_ADD => {
+    	    resources => {
+        	    homepage   => 'https://github.com/Leprevost/PepXML-Parser',
+                repository => 'https://github.com/Leprevost/PepXML-Parser.git',
+                bugtracker => 'https://rt.cpan.org/NoAuth/Bugs.html?Dist=PepXML-Parser',
+            },
+        })
+    ),
+    
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'PepXML-Parser-*' },
 );

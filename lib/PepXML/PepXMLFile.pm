@@ -66,7 +66,8 @@ sub get_msms_pipeline_analysis {
 sub get_enzymes {
 	my $self = shift;
 	
-	my @list = $self->sample_enzyme;
+	my ($list) = $self->sample_enzyme;
+	my @list = @{$list};
 	
 	return @list;
 }
@@ -101,11 +102,17 @@ sub get_parameters {
 	return @deref;	
 }
 
+sub get_db_info {
+	my $self = shift;
+	
+	return $self->get_search_summary->search_database;
+}
+
 
 sub get_hits {
 	my $self = shift;
 
-	my @hits = @{$self->search_hits};
+	my @hits = @{$self->search_hit};
 	
 	return @hits;	
 }
