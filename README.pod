@@ -1,6 +1,6 @@
 =head1 NAME
 
-PepXML::Parser - A Perl parser for the PepXML file format.
+PepXML::Parser - A Perl parser for the pepXML file format.
 
 =head1 VERSION
 
