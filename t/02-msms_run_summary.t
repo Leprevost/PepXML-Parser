@@ -10,7 +10,7 @@ plan tests => 5;
 
 my $p = PepXML::Parser->new();
  
-my $pepxmlfile = $p->parse("t/sample.pep.xml");
+my $pepxmlfile = $p->parse("t/small.sample.pep.xml");
 
 my $obj = $pepxmlfile->get_run_summary;
 

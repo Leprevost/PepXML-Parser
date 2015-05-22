@@ -10,7 +10,7 @@ plan tests => 4;
 
 my $p = PepXML::Parser->new();
  
-my $pepxmlfile = $p->parse("t/sample.pep.xml");
+my $pepxmlfile = $p->parse("t/small.sample.pep.xml");
 
 my ($enzymes) = $pepxmlfile ->get_sample_enzyme;
 

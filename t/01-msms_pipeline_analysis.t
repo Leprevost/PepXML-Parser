@@ -10,7 +10,7 @@ plan tests => 5;
 
 my $p = PepXML::Parser->new();
  
-my $pepxmlfile = $p->parse("t/sample.pep.xml");
+my $pepxmlfile = $p->parse("t/small.sample.pep.xml");
 
 cmp_ok( $pepxmlfile->msms_pipeline_analysis->date, 'eq', "2015-04-09T18:54:11" );
 cmp_ok( $pepxmlfile->msms_pipeline_analysis->xmlns, 'eq', "http://regis-web.systemsbiology.net/pepXML" );
