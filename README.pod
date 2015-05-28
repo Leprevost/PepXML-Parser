@@ -12,7 +12,7 @@ Quick summary of what the module does.
 
     my $parser = PepXML::Parser->new();
 
-    my $pepxml = $p->parse("sample.pepxml");
+    my $pepxml = $parser->parse("sample.pepxml");
     
     my %msms = $pepxml->get_msms_pipeline_analysis();
     
@@ -81,7 +81,7 @@ Data access:
     
 =head3 get_enzymes
 
-Return tupe: array.
+Return tupe: array of PepXML::Enzyme objects.
 
     my @enzymes = $pepxml->get_enzymes();
 
@@ -294,28 +294,28 @@ Data access:
 
 Return type: array
 
-    $pepxml->get_proteins();
+    my @proteins = $pepxml->get_proteins();
 
 
 =head3 get_unique_proteins()
 
 Return type: array
 
-    $pepxml->get_unique_proteins();
+    my @proteins = $pepxml->get_unique_proteins();
 
 
 =head3 get_peptides()
 
 Return type: array
 
-    $pepxml->get_peptides();
+    my @peptides = $pepxml->get_peptides();
 
 
 =head3 get_unique_peptides()
 
 Return type: array
 
-    $pepxml->get_unique_peptides();
+    my @peptides = $pepxml->get_unique_peptides();
 
 
 =head1 AUTHOR

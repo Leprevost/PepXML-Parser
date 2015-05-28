@@ -17,7 +17,7 @@ use PepXML::SpectrumQuery;
 use PepXML::SearchHit;
 use PepXML::SearchScore;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 #globals
 my $package;
