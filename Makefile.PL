@@ -18,11 +18,11 @@ WriteMakefile(
         'Test::More' => 0,
     },
     PREREQ_PM => {
-        "XML::Twig"				=>	3.49,
-		"Moose"					=>	0,
-		"namespace::autoclean"	=>	0,	
+    "XML::Twig"             =>	3.49,
+		"Moose"                 =>	0,
+		"namespace::autoclean"	=>	0,
     },
-    
+
     (! eval { ExtUtils::MakeMaker->VERSION(6.46) } ? () :
         (META_ADD => {
     	    resources => {
@@ -32,7 +32,7 @@ WriteMakefile(
             },
         })
     ),
-    
+
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'PepXML-Parser-*' },
 );

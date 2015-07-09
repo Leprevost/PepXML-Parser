@@ -9,7 +9,7 @@ use PepXML::Parser;
 plan tests => 5;
 
 my $p = PepXML::Parser->new();
- 
+
 my $pepxmlfile = $p->parse("t/small.sample.pep.xml");
 
 cmp_ok( $pepxmlfile->msms_pipeline_analysis->date, 'eq', "2015-04-09T18:54:11" );

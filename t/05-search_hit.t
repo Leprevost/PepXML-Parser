@@ -9,8 +9,8 @@ use PepXML::Parser;
 plan tests => 3;
 
 my $p = PepXML::Parser->new();
- 
-my $pepxml	 = $p->parse("t/small.sample.pep.xml");
+
+my $pepxml	 = $p->parse("t/sample.pep.xml");
 
 
 cmp_ok( $pepxml->search_hit->[0]->assumed_charge, '==', "2" );
